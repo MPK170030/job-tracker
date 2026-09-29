@@ -1,0 +1,142 @@
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --border: #d4d4d4;
+  --input-bg: #ffffff;
+  --primary: #2563eb;
+  --primary-text: #ffffff;
+  --success: #15803d;
+  --info: #a16207;
+  --error: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1e;
+    --text: #f2f2f2;
+    --muted: #a1a1a1;
+    --border: #3a3a3c;
+    --input-bg: #2c2c2e;
+    --primary: #3b82f6;
+    --success: #4ade80;
+    --info: #facc15;
+    --error: #f87171;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  width: 350px;
+  margin: 0;
+}
+
+.app {
+  padding: 12px 14px 14px;
+}
+
+h1 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.row label {
+  flex: 1;
+}
+
+button {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  width: 100%;
+  margin-top: 4px;
+  border: none;
+  background: var(--primary);
+  color: var(--primary-text);
+  font-weight: 600;
+}
+
+.settings {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-toggle {
+  padding: 0;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.settings-body {
+  margin-top: 8px;
+}
+
+.warning {
+  color: var(--error);
+}
+
+.result {
+  margin: 10px 0 0;
+  font-weight: 600;
+}
+
+.result.success {
+  color: var(--success);
+}
+
+.result.info {
+  color: var(--info);
+}
+
+.result.error {
+  color: var(--error);
+}
