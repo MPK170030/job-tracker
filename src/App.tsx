@@ -3,8 +3,9 @@ import "./App.css";
 import type { JobApplication, Settings, Source, Status } from "./types";
 import { loadSettings, saveSettings } from "./shared/storage";
 import { guessSource, parseTitle, sendToSheet, trimApplication } from "./shared/helpers";
+import { extractJob } from "./shared/extractor";
 
-const SOURCES: Source[] = ["Greenhouse", "Workday", "Other"];
+const SOURCES: Source[] = ["Greenhouse", "Workday", "Ashby", "Other"];
 const STATUSES: Status[] = ["Applied", "Interviewing", "Rejected", "Offer"];
 
 const EMPTY_APPLICATION: JobApplication = {
@@ -31,6 +32,24 @@ export default function App() {
 
   const [application, setApplication] = useState<JobApplication>(EMPTY_APPLICATION);
   const [send, setSend] = useState<SendState>({ kind: "idle" });
+
+  async function handleScan() {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (!tab?.id) return;
+
+    try {
+      const results = await chrome.scripting.executeScript({
+        target: { tabId: tab.id, allFrames: true },
+        func: extractJob,
+      });
+      console.log(
+        "[scan]",
+        results.map((r) => ({ frameId: r.frameId, result: r.result }))
+      );
+    } catch (err) {
+      console.error("[scan] failed", err);
+    }
+  }
 
   // On open: load settings and pre-fill from the current tab
   useEffect(() => {
@@ -104,7 +123,7 @@ export default function App() {
   return (
     <div className="app">
       <h1>Log Application</h1>
-
+      <button type="button" onClick={handleScan}>Scan (debug)</button>
       {/* Settings */}
       <section className="settings">
         <button

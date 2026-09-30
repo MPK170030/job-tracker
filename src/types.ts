@@ -1,4 +1,4 @@
-export type Source = 'Greenhouse' | 'Workday' | 'Other';
+export type Source = 'Greenhouse' | 'Workday' | 'Ashby' | 'Other';
 export type Status = 'Applied' | 'Interviewing' | 'Rejected' | 'Offer';
 
 export type JobApplication = {
@@ -10,6 +10,16 @@ export type JobApplication = {
   status: Status;
   notes: string;
 };
+
+export type ExtractedJob = {
+  role?: string,
+  company?: string,
+  location?: string,
+  jobId?: string,
+  url: string,
+  source: Source,
+  capturedAt: number
+}
 
 export type Settings = {
   appsScriptUrl: string;

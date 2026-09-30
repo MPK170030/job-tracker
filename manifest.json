@@ -4,11 +4,16 @@
     "version": "1.0.0",
     "permissions":[
         "storage",
-        "activeTab"
+        "activeTab",
+        "scripting"
     ],
     "host_permissions": [
         "https://script.google.com/*",
-        "https://script.googleusercontent.com/*"
+        "https://script.googleusercontent.com/*",
+        "https://*.greenhouse.io/*",
+        "https://*.myworkdayjobs.com/*",
+        "https://*.myworkdaysite.com/*",
+        "https://*.ashbyhq.com/*"
     ],
     "action": {
         "default_popup": "index.html"

@@ -5,6 +5,8 @@ export function guessSource(url: string): Source {
     const host = new URL(url).hostname;
     if (host.endsWith("greenhouse.io")) return "Greenhouse";
     if (host.endsWith("myworkdayjobs.com")) return "Workday";
+    if (host.endsWith("ashbyhq.com")) return "Ashby";
+    if (host.endsWith("myworkdaysite.com")) return "Workday";
   } catch {
     // Not a valid URL (e.g. chrome:// pages) – fall through
   }
